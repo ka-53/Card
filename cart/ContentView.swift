@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var player = "dice1"
+    @State var player2 = "dice6"
+    
+    
     var body: some View {
         
         ZStack{
@@ -20,18 +25,19 @@ struct ContentView: View {
                 Spacer()
                 HStack{
                     
-                    Image("dice1")
+                    Image(player)
                         .padding()
                     
-                    Image("dice2")
+                    Image(player2)
                         .padding()
                     
                 }
                 Spacer()
                 Button(action: {
-                            // Обработка нажатия кнопки "Roll"
+                    deal()  // Обработка нажатия кнопки "Roll"
                         }) {
                             Text("Start")
+                            
                                 .font(.headline)
                                 .foregroundColor(.white)
                                 .padding()
@@ -48,6 +54,14 @@ struct ContentView: View {
             }
         }
 
+    }
+    
+    func deal() {
+        //randomize the dice
+        player = "dice" + String(Int.random(in: 1...6))
+        
+        player2 = "dice" + String(Int.random(in: 1...6))
+        
     }
 }
 
